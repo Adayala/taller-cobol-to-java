@@ -3,8 +3,8 @@ package com.taller.coboljava.business.bo;
 import java.math.BigDecimal;
 
 public class Payment {
-    public PayerData payerData;
-    public BigDecimal amount;
-    public PaymentType paymentType;
-    public BeneficiaryData beneficiaryData;
+    private PayerData payerData;
+    private BigDecimal amount;
+    private PaymentType paymentType;
+    private BeneficiaryData beneficiaryData;
 }
