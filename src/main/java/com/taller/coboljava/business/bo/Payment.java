@@ -7,4 +7,28 @@ public class Payment {
     private BigDecimal amount;
     private PaymentType paymentType;
     private BeneficiaryData beneficiaryData;
+
+    public Payment(PayerData payerData, BigDecimal amount, PaymentType paymentType, BeneficiaryData beneficiaryData) {
+        this.payerData = payerData;
+        this.amount = amount;
+        this.paymentType= paymentType;
+        this.beneficiaryData = beneficiaryData;
+    }
+
+    public PayerData getPayerData() {
+        return payerData;
+    }
+
+    public BigDecimal getAmount() {
+        return amount;
+    }
+
+    public PaymentType getPaymentType() {
+        return paymentType;
+    }
+
+    public BeneficiaryData getBeneficiaryData() {
+        return beneficiaryData;
+    }
+
 }
