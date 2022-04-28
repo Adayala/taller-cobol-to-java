@@ -55,16 +55,10 @@ public class Application {
         String beneficiaryWalletId = in.nextLine();
         System.out.println("Ingrese el monto");
         BigDecimal amount = new BigDecimal(in.nextLine());
+        PayerData payerData = new PayerData(null, name, null, walletId);
+        BeneficiaryData beneficiaryData = new BeneficiaryData(null, beneficiaryName, beneficiaryWalletId);
+        Payment payment = new Payment(payerData, amount, PaymentType.CRYPTO, beneficiaryData );
 
-        Payment payment = new Payment();
-        payment.paymentType = PaymentType.CRYPTO;
-        payment.amount = amount;
-        payment.payerData = new PayerData();
-        payment.beneficiaryData = new BeneficiaryData();
-        payment.payerData.walletId = walletId;
-        payment.payerData.name = name;
-        payment.beneficiaryData.walletId = beneficiaryWalletId;
-        payment.beneficiaryData.name = beneficiaryName;
 
         System.out.println("Ejecutando pago" + payment.paymentType.name()
                 + "|" + payment.amount + "|" + payment.payerData.walletId + "|"
@@ -79,13 +73,10 @@ public class Application {
         String card = in.nextLine();
         System.out.println("Ingrese el monto");
         BigDecimal amount = new BigDecimal(in.nextLine());
+        PayerData payerData = new PayerData(null, name, card, null);
+        BeneficiaryData beneficiaryData = new BeneficiaryData(null, null, null);
+        Payment payment = new Payment(payerData, amount, PaymentType.CARD, null );
 
-        Payment payment = new Payment();
-        payment.paymentType = PaymentType.CARD;
-        payment.amount = amount;
-        payment.payerData = new PayerData();
-        payment.payerData.cardNumber = card;
-        payment.payerData.name = name;
 
         System.out.println("Ejecutando pago" + payment.paymentType.name()
                 + "|" + payment.amount + "|" + payment.payerData.name + "|"
@@ -105,15 +96,11 @@ public class Application {
         System.out.println("Ingrese el monto");
         BigDecimal amount = new BigDecimal(in.nextLine());
 
-        Payment payment = new Payment();
-        payment.paymentType = PaymentType.TRANSFER;
-        payment.amount = amount;
-        payment.payerData = new PayerData();
-        payment.beneficiaryData = new BeneficiaryData();
-        payment.payerData.cbu = cbu;
-        payment.payerData.name = name;
-        payment.beneficiaryData.cbu = beneficiaryCbu;
-        payment.beneficiaryData.name = beneficiaryName;
+
+        PayerData  payerData = new PayerData(name, cbu, null, null);
+        BeneficiaryData beneficiaryData = new BeneficiaryData(beneficiaryCbu, beneficiaryName, null);
+        Payment payment = new Payment(payerData, amount, PaymentType.TRANSFER, beneficiaryData );
+
 
         System.out.println("Ejecutando pago" + payment.paymentType.name()
                 + "|" + payment.amount + "|" + payment.payerData.name + "|"

@@ -31,4 +31,11 @@ public class Payment {
         return beneficiaryData;
     }
 
+    public void cubrirGastosDeTransaccion(BigDecimal amount2){
+        if (!cubierto) {
+            amount = amount.add(amount2);
+            cubierto = true;
+        }
+    }
+
 }
