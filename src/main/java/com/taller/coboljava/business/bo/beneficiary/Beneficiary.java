@@ -1,4 +1,13 @@
 package com.taller.coboljava.business.bo.beneficiary;
 
-public class Beneficiary {
+public abstract class Beneficiary {
+    protected String name;
+
+    public Beneficiary(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
 }
