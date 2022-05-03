@@ -1,6 +1,6 @@
 package com.taller.coboljava.business.bo.payer;
 
-public abstract class CryptoPayer extends Payer{
+public class CryptoPayer extends Payer{
 
     protected String walletId;
 
@@ -11,5 +11,13 @@ public abstract class CryptoPayer extends Payer{
 
     public String getWalletId() {
         return walletId;
+    }
+
+    @Override
+    public String toString() {
+        return "CryptoPayer{" +
+                "walletId='" + walletId + '\'' +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

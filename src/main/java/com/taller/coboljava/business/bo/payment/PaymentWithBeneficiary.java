@@ -1,6 +1,5 @@
 package com.taller.coboljava.business.bo.payment;
 
-import com.taller.coboljava.business.bo.BeneficiaryData;
 import com.taller.coboljava.business.bo.beneficiary.Beneficiary;
 import com.taller.coboljava.business.bo.payer.Payer;
 

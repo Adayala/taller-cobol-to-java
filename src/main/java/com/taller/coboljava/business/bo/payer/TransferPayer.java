@@ -1,6 +1,6 @@
 package com.taller.coboljava.business.bo.payer;
 
-public abstract class TransferPayer extends Payer{
+public  class TransferPayer extends Payer{
 
     protected String cbu;
 
@@ -11,5 +11,13 @@ public abstract class TransferPayer extends Payer{
 
     public String getCbu() {
         return cbu;
+    }
+
+    @Override
+    public String toString() {
+        return "TransferPayer{" +
+                "name='" + name + '\'' +
+                ", cbu='" + cbu + '\'' +
+                '}';
     }
 }

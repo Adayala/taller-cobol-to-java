@@ -7,8 +7,24 @@ import com.taller.coboljava.business.bo.payer.Payer;
 
 import java.math.BigDecimal;
 
-public abstract class CryptoPayment extends PaymentWithBeneficiary {
+public class CryptoPayment extends PaymentWithBeneficiary {
     public CryptoPayment(CryptoPayer payerData, BigDecimal amount, CryptoBeneficiary beneficiary) {
         super(payerData, amount, beneficiary);
+    };
+
+    @Override
+    public String toString() {
+        return "CryptoPayment{" +
+                "payerData=" + payerData +
+                ", amount=" + amount +
+                ", beneficiary=" + beneficiary +
+                '}';
+    };
+
+    @Override
+    public int executionTime() {
+        return 2000;
     }
+
+
 }

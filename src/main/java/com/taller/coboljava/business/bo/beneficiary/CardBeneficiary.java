@@ -1,7 +1,7 @@
 package com.taller.coboljava.business.bo.beneficiary;
 
 public abstract class CardBeneficiary extends Beneficiary{
-    protected String walletId;
+    private String walletId;
 
     public CardBeneficiary(String name, String walletId) {
         super(name);
@@ -10,5 +10,13 @@ public abstract class CardBeneficiary extends Beneficiary{
 
     public String getWalletId() {
         return walletId;
+    }
+
+    @Override
+    public String toString() {
+        return "CardBeneficiary{" +
+                "name='" + name + '\'' +
+                ", walletId='" + walletId + '\'' +
+                '}';
     }
 }

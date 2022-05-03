@@ -5,8 +5,22 @@ import com.taller.coboljava.business.bo.payer.Payer;
 
 import java.math.BigDecimal;
 
-public abstract class CardPayment extends Payment{
+public class CardPayment extends Payment{
     public CardPayment(CardPayer payerData, BigDecimal amount) {
         super(payerData, amount);
+    };
+
+    @Override
+    public String toString() {
+        return "CardPayment{" +
+                "payerData=" + payerData +
+                ", amount=" + amount +
+                '}';
+    }
+
+
+    @Override
+    public int executionTime() {
+        return 1000;
     }
 }

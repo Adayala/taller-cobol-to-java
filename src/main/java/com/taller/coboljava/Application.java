@@ -1,9 +1,15 @@
 package com.taller.coboljava;
 
-import com.taller.coboljava.business.bo.BeneficiaryData;
-import com.taller.coboljava.business.bo.PayerData;
-import com.taller.coboljava.business.bo.Payment;
 import com.taller.coboljava.business.bo.PaymentType;
+import com.taller.coboljava.business.bo.beneficiary.CryptoBeneficiary;
+import com.taller.coboljava.business.bo.beneficiary.TransferBeneficiary;
+import com.taller.coboljava.business.bo.payer.CardPayer;
+import com.taller.coboljava.business.bo.payer.CryptoPayer;
+import com.taller.coboljava.business.bo.payer.TransferPayer;
+import com.taller.coboljava.business.bo.payment.CardPayment;
+import com.taller.coboljava.business.bo.payment.CryptoPayment;
+import com.taller.coboljava.business.bo.payment.Payment;
+import com.taller.coboljava.business.bo.payment.TransferPayment;
 
 import java.math.BigDecimal;
 import java.util.Scanner;
@@ -31,7 +37,11 @@ public class Application {
                     break;
             }
             if (p != null) {
+                System.out.println(p.toString());
+                Thread.sleep(p.executionTime());
+                /*
                 if (p.paymentType == PaymentType.CARD) {
+
                     Thread.sleep(1000);
                 }
                 if (p.paymentType == PaymentType.TRANSFER) {
@@ -40,6 +50,7 @@ public class Application {
                 if (p.paymentType == PaymentType.CRYPTO) {
                     Thread.sleep(2000);
                 }
+                */
             }
         } while (option != 4);
     }
@@ -55,14 +66,11 @@ public class Application {
         String beneficiaryWalletId = in.nextLine();
         System.out.println("Ingrese el monto");
         BigDecimal amount = new BigDecimal(in.nextLine());
-        PayerData payerData = new PayerData(null, name, null, walletId);
-        BeneficiaryData beneficiaryData = new BeneficiaryData(null, beneficiaryName, beneficiaryWalletId);
-        Payment payment = new Payment(payerData, amount, PaymentType.CRYPTO, beneficiaryData );
+        CryptoPayer payerData = new CryptoPayer( name, walletId);
+        CryptoBeneficiary beneficiaryData = new CryptoBeneficiary(beneficiaryName, beneficiaryWalletId) ;
+        Payment payment = new CryptoPayment(payerData, amount,  beneficiaryData);
 
 
-        System.out.println("Ejecutando pago" + payment.paymentType.name()
-                + "|" + payment.amount + "|" + payment.payerData.walletId + "|"
-                + payment.beneficiaryData.walletId);
         return payment;
     }
 
@@ -73,14 +81,12 @@ public class Application {
         String card = in.nextLine();
         System.out.println("Ingrese el monto");
         BigDecimal amount = new BigDecimal(in.nextLine());
-        PayerData payerData = new PayerData(null, name, card, null);
-        BeneficiaryData beneficiaryData = new BeneficiaryData(null, null, null);
-        Payment payment = new Payment(payerData, amount, PaymentType.CARD, null );
+        CardPayer payerData = new CardPayer(name, card) {};
 
 
-        System.out.println("Ejecutando pago" + payment.paymentType.name()
-                + "|" + payment.amount + "|" + payment.payerData.name + "|"
-                + payment.payerData.cardNumber);
+        CardPayment payment = new CardPayment (payerData, amount ) ;
+
+
         return payment;
     }
 
@@ -97,15 +103,11 @@ public class Application {
         BigDecimal amount = new BigDecimal(in.nextLine());
 
 
-        PayerData  payerData = new PayerData(name, cbu, null, null);
-        BeneficiaryData beneficiaryData = new BeneficiaryData(beneficiaryCbu, beneficiaryName, null);
-        Payment payment = new Payment(payerData, amount, PaymentType.TRANSFER, beneficiaryData );
+        TransferPayer payerData = new TransferPayer(name, cbu) ;
+        TransferBeneficiary beneficiaryData = new TransferBeneficiary( beneficiaryName, beneficiaryCbu) ;
+        TransferPayment payment = new TransferPayment(payerData, amount, beneficiaryData );
 
 
-        System.out.println("Ejecutando pago" + payment.paymentType.name()
-                + "|" + payment.amount + "|" + payment.payerData.name + "|"
-                + payment.payerData.cbu + "|" + payment.beneficiaryData.name + "|"
-                + payment.beneficiaryData.cbu);
         return payment;
     }
 
